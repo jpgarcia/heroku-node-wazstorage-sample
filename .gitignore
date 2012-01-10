@@ -1,0 +1,32 @@
+# Ignore files for OSX
+
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Ignore files for Appcelerator
+
+.project
+build
+build
+*.pyc
+tmp
+
+# Ignore files for NodeJS
+
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+node_modules
+npm-debug.log
