@@ -13,6 +13,8 @@ app.register('html', require('ejs'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 
+app.enable("jsonp callback");
+
 app.use(function(req, res, next) {		
 	res.locals.path = url.parse(req.url).pathname;
 
@@ -39,15 +41,28 @@ app.configure(function () {
 });
 
 /*
- * Common routes
+ * Routes
  * ---------------------------------------- */
-app.get('/', function (req, res) {
-	
+app.get('/', function (req, res) {	
+	res.render('index', {layout: false });
+});
+
+app.get('/blobs', function (req, res) {
+	res.render('blobs', {layout: false });
+});
+
+app.get('/blobs-azure', function (req, res) {
+	res.render('blobs-azure', {layout: false });	
+});
+
+app.get('/blobs/write', function (req, res) {
+	var start = new Date();
 	var blobClient = azure.createBlobService(process.env['WAZ_STORAGE_ACCOUNT'], process.env['WAZ_STORAGE_ACCESS_KEY'])
 						  .withFilter(new azure.ExponentialRetryPolicyFilter());
-	
+
 	blobClient.listContainers({}, function(e, r) {
-		res.render('index', {layout: false, data: r});
+		var time = new Date() - start;
+		res.json({time: time.toString()});
 	});
 });
 

@@ -1,0 +1,63 @@
+body {
+	font-family: "Segoe UI","HelveticaNeue",Garuda,Arial,sans-serif;
+	color: #404040;
+}
+
+#main {
+	margin: 0px auto;
+	width: 910px;
+}
+
+button {
+	font-size: 2em; 
+	padding: .3em;
+	color: #404040;
+	margin: 10px 5px;
+	cursor: pointer;
+}
+
+button:disabled {
+	color: #CCC;
+}
+
+ul {
+	list-style: none;		
+	display: inline;
+	width: 900px;
+}
+
+ul li {
+	list-style: none;		
+	display: inline;
+	float: left;
+	width: 430px;		
+	border: solid #CCC 1px;
+	margin: 5px;
+}	
+
+table {
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+table td {		
+	border-bottom: 2px solid #909090;
+	font-size:2.5em;
+	padding:20px;
+	text-align:center;
+	background-color: #FAFAFA;
+}
+
+table tr.total td {
+	font-weight: bold;
+	background-color: #F0F0F0;
+}
+
+table td.loading {
+	background: #FAFAFA url('/img/loading.gif') center no-repeat;
+}
+
+div.actions {
+	text-align: right;
+}
