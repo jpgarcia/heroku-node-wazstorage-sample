@@ -51,8 +51,8 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>
-	$(document).ready(function() {		
-		$('button').click(function(e){			
+	$(document).ready( function () {
+		$('button').click( function(e) {
 			$(this).attr('disabled', 'disabled');
 
 			$('td[class!="label"]').empty().addClass('loading');
@@ -71,8 +71,10 @@
 							
 							var azureTotal = parseInt($('td.w-azure span').text(), 10) + parseInt($('td.r-azure span').text(), 10);
 							var herokuTotal = parseInt($('td.w-heroku span').text(), 10) + parseInt($('td.r-heroku span').text(), 10);
-							$('td.t-azure').html('<span>'+azureTotal+'</span> ms.').removeClass('loading');;
-							$('td.t-heroku').html('<span>'+herokuTotal+'</span> ms.').removeClass('loading');;
+
+							$('td.t-azure').html('<span>'+azureTotal+'</span> ms.').removeClass('loading');
+							$('td.t-heroku').html('<span>'+herokuTotal+'</span> ms.').removeClass('loading');
+							
 							$('button').removeAttr('disabled', 'disabled');
 						});						
 					});
