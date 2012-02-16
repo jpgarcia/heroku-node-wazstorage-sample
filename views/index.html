@@ -1,86 +1,29 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link href="/css/site.css" media="screen" rel="stylesheet" type="text/css" />
-  <title>WAZ Storage Sample</title>
-</head>
+	<div class="bootstrap">
+		<p>
+			The intention of this sample app, is to compare the performance of different blob storage services such as <a href="https://www.windowsazure.com/en-us/home/tour/storage/" title="Windows Azure Storage">Windows Azure Storage</a> and <a href="http://aws.amazon.com/s3/" title="Amazon S3">Amazon S3</a> running on different PaaS like <a href="https://www.windowsazure.com/en-us/home/tour/compute/" title="Windows Azure Hosted Services">Windows Azure Hosted Services</a> and <a href="http://www.heroku.com/" title="Heroku">Heroku</a>.
+		</p>
 
-<body>
-
-<div id="main">
-	<h1>Windows Azure Storage for Node.js</h1>
-	<p>
-		Press the <strong>Start test</strong> button to start the process. It will 
-		perform some REST request against the same sevice hosted in <strong>Windows Azure</strong> and <strong>Heroku</strong>.
-		This service basically stores a random blob and then read its contents to collect some metrics using the <a href="https://github.com/WindowsAzure/azure-sdk-for-node" title="Windows Azure SDK for Node.js">azure</a> npm package.
-	</p>
-	<p></p>
-	<table>
-		<thead>
-			<tr>
-				<th></th>
-				<th><img src="/img/azure-logo.png" alt="Azure logo" /></th>
-				<th><img src="/img/heroku-logo.png" alt="Heroku logo" /></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td class="label">Write</td>
-				<td class="w-azure">-</td>
-				<td class="w-heroku">-</td>
-			</tr>
-			<tr>
-				<td class="label">Read</td>
-				<td class="r-azure">-</td>
-				<td class="r-heroku">-</td>
-			</tr>
-			<tr class="total">
-				<td class="label">Total</td>
-				<td class="t-azure">-</td>
-				<td class="t-heroku">-</td>
-			</tr>			
-		</tbody>
-	</table>
-	<div class="actions">
-		<button>Start test</button>
+		<div>
+			<h2>Status</h2>
+			Bits for read test downloaded? [ <%=(app.configuration.readBlobDownloaded) ? "√" : "X" %> ],
+			Heroku deployment status? [√], 
+			Azure deployment status: [√] 
+		</div>
+	
+		
+		<div style="text-align:center">
+			<button class="test">Test Page</button>
+			<button class="configuration">Configuration</button>
+		</div>
 	</div>
-</div>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>
 	$(document).ready( function () {
-		$('button').click( function(e) {
-			$(this).attr('disabled', 'disabled');
+		$('button.test').click(function() {
+			location.href = '/test';
+		});
 
-			$('td[class!="label"]').empty().addClass('loading');
-
-			$.getJSON('/blobs/write?jsonpcallback=?"', {}, function(e, r){				
-				$('td.w-azure').html('<span>'+e.time+'</span> ms.').removeClass('loading');
-
-				$.getJSON('/blobs/write?jsonpcallback=?"', function(e){				
-					$('td.w-heroku').html('<span>'+e.time+'</span> ms.').removeClass('loading');
-
-					$.getJSON('/blobs/write?jsonpcallback=?"', function(e){				
-						$('td.r-azure').html('<span>'+e.time+'</span> ms.').removeClass('loading');
-						
-						$.getJSON('/blobs/write?jsonpcallback=?"', function(e){				
-							$('td.r-heroku').html('<span>'+e.time+'</span> ms.').removeClass('loading');
-							
-							var azureTotal = parseInt($('td.w-azure span').text(), 10) + parseInt($('td.r-azure span').text(), 10);
-							var herokuTotal = parseInt($('td.w-heroku span').text(), 10) + parseInt($('td.r-heroku span').text(), 10);
-
-							$('td.t-azure').html('<span>'+azureTotal+'</span> ms.').removeClass('loading');
-							$('td.t-heroku').html('<span>'+herokuTotal+'</span> ms.').removeClass('loading');
-							
-							$('button').removeAttr('disabled', 'disabled');
-						});						
-					});
-				});
-				
-			});
+		$('button.configuration').click(function() {
+			location.href = '/config';
 		});
 	});
 </script>

@@ -4,6 +4,8 @@
   "dependencies": {
     "express": "2.5.2",
     "ejs": "0.6.1",
-    "azure-0.4.7": "0.5.1"
+    "azure": "https://github.com/jpgarcia/azure-sdk-for-node/tarball/master",
+    "node-uuid": "latest",
+    "seq" : "latest"
   }
 }

@@ -8,15 +8,18 @@ body {
 	width: 910px;
 }
 
-button {
-	font-size: 2em; 
+button,
+input[type='submit']
+{
+	font-size: 1.5em; 
 	padding: .3em;
 	color: #404040;
-	margin: 10px 5px;
+	margin: 10px 0px;
 	cursor: pointer;
 }
 
-button:disabled {
+button:disabled,
+input[type='submit'] {
 	color: #CCC;
 }
 
@@ -60,4 +63,28 @@ table td.loading {
 
 div.actions {
 	text-align: right;
+}
+
+form .clearfix::before, form .clearfix::after {
+	display: table;
+	content: "";
+	zoom: 1;
+}
+form .clearfix::after {
+	clear: both;
+}
+form .clearfix::before, form .clearfix::after {
+	display: table;
+	content: "";
+	zoom: 1;
+}
+form label {
+	font-size: 1.3em;
+	width:100%;
+	font-weight: bold;
+	color: #777;
+}
+form input[type='text'] {
+	font-size: 1.3em;
+	width:100%;
 }
